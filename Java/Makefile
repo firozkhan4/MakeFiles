@@ -1,27 +1,17 @@
-# Compiler
-JAVAC = javac
-JAVA  = java
+.SILENT:
 
-# Source files
-SRCS  = $(wildcard *.java)
-OBJS  = $(SRCS:.java=.class)
-
-# Main class (Change this to match your main file)
+SRC_FILES = $(wildcard src/*.java)
 MAIN_CLASS = Main
+ARGS = $(filter-out $@,$(MAKECMDGOALS))
 
-# Default target
-all: compile
+all: build
 
-# Compile Java files
-compile: $(OBJS)
+build:
+	mkdir -p bin
+	javac -d bin $(SRC_FILES)
 
-%.class: %.java
-	$(JAVAC) $<
+run: build
+	java -cp bin $(MAIN_CLASS) $(ARGS)
 
-# Run the program
-run: compile
-	$(JAVA) $(MAIN_CLASS)
-
-# Clean up compiled files
 clean:
-	rm -f *.class
+	rm -rf bin/*
