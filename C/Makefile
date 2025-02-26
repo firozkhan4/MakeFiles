@@ -9,12 +9,12 @@ MAIN_FILE=main
 
 all: build
 
-build: $(OBJ)
+build:
 	mkdir -p bin
 	$(CC) -o bin/$(MAIN_FILE) $(SRC)
 
 run: build
-	bin/$(MAKE_FILE)
+	bin/$(MAIN_FILE)
 
 clean:
 	rm -f bin/$(MAIN_FILE)
