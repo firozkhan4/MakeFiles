@@ -15,7 +15,7 @@ build: $(OBJ)
 	$(CC) $(CFLAGS) -o bin/$(MAIN_FILE) $^
 
 run: build
-	./bin/$(notdir $(CURDIR))
+	./bin/$(MAKE_FILE)
 
 clean:
 	rm -f bin/$(MAIN_FILE)
